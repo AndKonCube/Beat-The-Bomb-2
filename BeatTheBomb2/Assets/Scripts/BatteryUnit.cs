@@ -1,48 +1,58 @@
 using UnityEngine;
-using TMPro; // Needed for Text Mesh Pro
+using TMPro; 
 using UnityEngine.UI;
 
 public class BatteryUnit : MonoBehaviour
 {
-    [Header("UI References")]
-    public TMP_Text numberDisplay;  // Drag the text showing "0" here
-    public Button plusButton;       // Drag the "+" button here
-    public Button minusButton;      // Drag the "-" button here
+    [Header("--- LEFT SIDE (Amperemeter) ---")]
+    public TMP_Text ampText;       // Drag the LEFT text here
+    public Button ampPlusBtn;      // Drag LEFT (+)
+    public Button ampMinusBtn;     // Drag LEFT (-)
+    public int currentAmps = 0;    // Holds the Amperemeter value
 
-    [Header("Data")]
-    public int currentValue = 0;    // The current number on this battery
+    [Header("--- RIGHT SIDE (Voltmeter) ---")]
+    public TMP_Text voltText;      // Drag the RIGHT text here
+    public Button voltPlusBtn;     // Drag RIGHT (+)
+    public Button voltMinusBtn;    // Drag RIGHT (-)
+    public int currentVolts = 0;   // Holds the Voltmeter value
 
-    private OutputManager manager;  // Reference to the boss script
+    private CollaborationManager manager; 
 
     void Start()
     {
-        // Find the manager automatically
-        manager = FindFirstObjectByType<OutputManager>();
+        manager = FindFirstObjectByType<CollaborationManager>();
+        UpdateDisplays();
 
-        // update the text immediately
-        UpdateDisplay();
+        // --- Setup Listeners for LEFT (Amps) ---
+        if(ampPlusBtn) ampPlusBtn.onClick.AddListener(() => ChangeAmps(1));
+        if(ampMinusBtn) ampMinusBtn.onClick.AddListener(() => ChangeAmps(-1));
 
-        // Add click listeners to the buttons via code (or you can do it in Inspector)
-        plusButton.onClick.AddListener(() => ChangeValue(1));
-        minusButton.onClick.AddListener(() => ChangeValue(-1));
+        // --- Setup Listeners for RIGHT (Volts) ---
+        if(voltPlusBtn) voltPlusBtn.onClick.AddListener(() => ChangeVolts(1));
+        if(voltMinusBtn) voltMinusBtn.onClick.AddListener(() => ChangeVolts(-1));   
     }
 
-    public void ChangeValue(int amount)
+    public void ChangeAmps(int amount)
     {
-        currentValue += amount;
-
-        // Optional: Prevent negative numbers
-        if (currentValue < 0) currentValue = 0;
-
-        UpdateDisplay();
+        currentAmps += amount;
+        if (currentAmps < 0) currentAmps = 0;
         
-        // Tell the manager to calculate the total sum every time we change a number
-        manager.CheckTotalOutput(); 
+        if (ampText != null) ampText.text = currentAmps.ToString();
+        if (manager != null) manager.CheckPuzzle();
     }
 
-    void UpdateDisplay()
+    public void ChangeVolts(int amount)
     {
-        if (numberDisplay != null)
-            numberDisplay.text = currentValue.ToString();
+        currentVolts += amount;
+        if (currentVolts < 0) currentVolts = 0;
+
+        if (voltText != null) voltText.text = currentVolts.ToString();
+        if (manager != null) manager.CheckPuzzle();
+    }
+
+    void UpdateDisplays()
+    {
+        if (ampText != null) ampText.text = currentAmps.ToString();
+        if (voltText != null) voltText.text = currentVolts.ToString();
     }
 }
