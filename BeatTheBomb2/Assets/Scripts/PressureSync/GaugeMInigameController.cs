@@ -2,12 +2,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// Controls the Gauge Minigame logic, handling input snapping, needle rotation, 
+/// random target generation, and the countdown timer.
+/// </summary>
 public class GaugeMinigameController : MonoBehaviour
 {
     [Header("--- Settings ---")]
     public float timeBeforeSwitch = 5.0f; 
-    public float minNeedleAngle = 90f;   // Start rotation (0 value)
-    public float maxNeedleAngle = -90f;  // End rotation (Max value)
+    public float minNeedleAngle = 90f;   
+    public float maxNeedleAngle = -90f;  
 
     [Header("--- Screen 1 (Player Input) ---")]
     public Slider inputSlider1; 
@@ -27,33 +31,34 @@ public class GaugeMinigameController : MonoBehaviour
     [Header("--- Feedback ---")]
     public TextMeshProUGUI resultText; 
 
-    // Private variables
     private float currentInput1;
     private float currentInput2;
     private float currentTarget1;
     private float currentTarget2;
     private float timer;
 
+    /// <summary>
+    /// Initializes slider ranges, listeners, and starts the first game loop.
+    /// </summary>
     private void Start()
     {
-        // Initialize Sliders
         inputSlider1.minValue = 0;
         inputSlider1.maxValue = 3000;
-        // Note: We remove the listener here and add it in the Inspector to be safe, 
-        // or you can keep it here. For this fix, let's rely on the code.
         inputSlider1.onValueChanged.AddListener(OnSlider1Changed);
 
         inputSlider2.minValue = 0;
         inputSlider2.maxValue = 300;
         inputSlider2.onValueChanged.AddListener(OnSlider2Changed);
 
-        // Initialize Timer
         timerSlider.maxValue = timeBeforeSwitch;
         timerSlider.minValue = 0;
 
         GenerateNewTargets();
     }
 
+    /// <summary>
+    /// Handles the countdown timer for the target switch.
+    /// </summary>
     private void Update()
     {
         timer -= Time.deltaTime;
@@ -67,42 +72,45 @@ public class GaugeMinigameController : MonoBehaviour
 
     // --- INPUT LOGIC ---
 
+    /// <summary>
+    /// Snaps the main slider to increments of 100, updates the text, and rotates the needle.
+    /// </summary>
     void OnSlider1Changed(float value)
     {
-        // 1. Calculate Snapped Value (Step 100)
         float snappedValue = Mathf.Round(value / 100f) * 100f;
 
-        // 2. Force Slider visual to snap
         if (value != snappedValue)
         {
             inputSlider1.SetValueWithoutNotify(snappedValue);
         }
 
-        // 3. Update Logic
         currentInput1 = snappedValue;
         if(valText1 != null) valText1.text = currentInput1.ToString("0");
         
         RotateNeedle(needle1, currentInput1 / 3000f);
     }
 
+    /// <summary>
+    /// Snaps the secondary slider to increments of 10, updates the text, and rotates the needle.
+    /// </summary>
     void OnSlider2Changed(float value)
     {
-        // 1. Calculate Snapped Value (Step 10)
         float snappedValue = Mathf.Round(value / 10f) * 10f;
 
-        // 2. Force Slider visual to snap
         if (value != snappedValue)
         {
             inputSlider2.SetValueWithoutNotify(snappedValue);
         }
 
-        // 3. Update Logic
         currentInput2 = snappedValue;
         if (valText2 != null) valText2.text = currentInput2.ToString("0");
 
         RotateNeedle(needle2, currentInput2 / 300f);
     }
 
+    /// <summary>
+    /// Calculates the correct angle for a needle based on the current percentage (fraction) and applies the rotation.
+    /// </summary>
     void RotateNeedle(Transform needleTransform, float fraction)
     {
         if (needleTransform == null) return;
@@ -112,16 +120,17 @@ public class GaugeMinigameController : MonoBehaviour
 
     // --- GAME LOGIC ---
 
+    /// <summary>
+    /// Randomizes new target values for the bottom screen and resets the timer.
+    /// </summary>
     void GenerateNewTargets()
     {
         timer = timeBeforeSwitch;
 
-        // Target 1 (0-3000)
         currentTarget1 = Random.Range(0, 31) * 100;
         if(targetText1 != null) targetText1.text = currentTarget1.ToString("0");
         RotateNeedle(targetNeedle1, currentTarget1 / 3000f);
 
-        // Target 2 (0-300)
         currentTarget2 = Random.Range(0, 31) * 10;
         if(targetText2 != null) targetText2.text = currentTarget2.ToString("0");
         RotateNeedle(targetNeedle2, currentTarget2 / 300f);
@@ -129,6 +138,9 @@ public class GaugeMinigameController : MonoBehaviour
         if(resultText != null) resultText.text = "";
     }
 
+    /// <summary>
+    /// Checks if the player's inputs match the current targets when the button is pressed.
+    /// </summary>
     public void OnPushButtonPressed()
     {
         bool match1 = Mathf.Approximately(currentInput1, currentTarget1);

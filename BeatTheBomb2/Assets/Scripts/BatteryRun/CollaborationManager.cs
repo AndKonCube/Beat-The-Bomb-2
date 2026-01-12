@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Manages the battery puzzle system, handling token shuffling, 
+/// slot validation, and win/loss states based on voltage and amperage matches.
+/// </summary>
 public class CollaborationManager : MonoBehaviour
 {
     [Header("Display 2 Components (The Map)")]
     public List<SlotLogic> slots;      
     public List<MapToken> tokens;      
+    
     [Header("UI Feedback")]
     public TMP_Text statusText;       
 
+    /// <summary>
+    /// Initializes the system status UI and randomizes the token positions at the start of the game.
+    /// </summary>
     void Start()
     {
         if (statusText != null)
@@ -22,6 +30,9 @@ public class CollaborationManager : MonoBehaviour
         ShuffleTokens();
     }
 
+    /// <summary>
+    /// Randomizes the order of map tokens and assigns the first four to the available slots.
+    /// </summary>
     void ShuffleTokens()
     {
         List<MapToken> shuffled = new List<MapToken>(tokens);
@@ -36,18 +47,18 @@ public class CollaborationManager : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-
             if (i < slots.Count && i < shuffled.Count)
             {
-
                 shuffled[i].transform.SetParent(slots[i].transform, false);
-
-               
                 shuffled[i].transform.localPosition = Vector3.zero;
             }
         }
     }
 
+    /// <summary>
+    /// Validates the puzzle by comparing the voltage and amperage of the batteries in the slots 
+    /// against the required values. Loads the next scene on success.
+    /// </summary>
     public async void CheckPuzzle()
     {
         Debug.Log("Checking System Integrity...");
@@ -59,7 +70,6 @@ public class CollaborationManager : MonoBehaviour
 
             if (tokenInSlot != null)
             {
-
                 BatteryUnit realBattery = tokenInSlot.realBattery;
 
                 if (realBattery == null)
@@ -86,6 +96,7 @@ public class CollaborationManager : MonoBehaviour
                 allCorrect = false;
             }
         }
+
         if (allCorrect)
         {
             Debug.Log("WIN!");
@@ -93,6 +104,8 @@ public class CollaborationManager : MonoBehaviour
             {
                 statusText.text = "SYSTEM ONLINE";
                 statusText.color = Color.green;
+                
+                // Yield to ensure the UI updates before the scene load freezes the frame
                 await System.Threading.Tasks.Task.Yield();
                 SceneManager.LoadScene("PressureSync");
             }   

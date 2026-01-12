@@ -505,7 +505,6 @@ GameObject:
   - component: {fileID: 342061276}
   - component: {fileID: 342061278}
   - component: {fileID: 342061277}
-  - component: {fileID: 342061279}
   m_Layer: 5
   m_Name: GaugeBackGround
   m_TagString: Untagged
@@ -571,23 +570,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 342061275}
   m_CullTransparentMesh: 1
---- !u!114 &342061279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 342061275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5713232421093a148acbfcef8c803c0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxValue: 300
-  stepSize: 10
-  needle: {fileID: 1738822154}
-  barFill: {fileID: 0}
-  controlSlider: {fileID: 1118340386}
 --- !u!1 &348305156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,7 +1372,6 @@ GameObject:
   - component: {fileID: 649723459}
   - component: {fileID: 649723461}
   - component: {fileID: 649723460}
-  - component: {fileID: 649723462}
   m_Layer: 5
   m_Name: GaugeBackGroundPSI
   m_TagString: Untagged
@@ -1456,22 +1437,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649723458}
   m_CullTransparentMesh: 1
---- !u!114 &649723462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649723458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c73dbb7525b9ef74f99527a4725e80ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fillImage: {fileID: 0}
-  targetText: {fileID: 0}
-  targetValue: 0
-  maxValue: 0
 --- !u!1 &694884763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1483,7 +1448,6 @@ GameObject:
   - component: {fileID: 694884764}
   - component: {fileID: 694884766}
   - component: {fileID: 694884765}
-  - component: {fileID: 694884767}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1548,21 +1512,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694884763}
   m_CullTransparentMesh: 1
---- !u!114 &694884767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 694884763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1227f62a0bf38047a3762e528b1a2b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minAngle: 90
-  maxAngle: -90
-  smoothingSpeed: 5
 --- !u!1 &762319405
 GameObject:
   m_ObjectHideFlags: 0
@@ -2024,7 +1973,6 @@ GameObject:
   - component: {fileID: 1103424846}
   - component: {fileID: 1103424848}
   - component: {fileID: 1103424847}
-  - component: {fileID: 1103424849}
   m_Layer: 5
   m_Name: GaugeNeedle
   m_TagString: Untagged
@@ -2089,21 +2037,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103424845}
   m_CullTransparentMesh: 1
---- !u!114 &1103424849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1103424845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1227f62a0bf38047a3762e528b1a2b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minAngle: 90
-  maxAngle: -90
-  smoothingSpeed: 5
 --- !u!1 &1118340384
 GameObject:
   m_ObjectHideFlags: 0
@@ -2114,7 +2047,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1118340385}
   - component: {fileID: 1118340386}
-  - component: {fileID: 1118340387}
   m_Layer: 5
   m_Name: SliderBar
   m_TagString: Untagged
@@ -2195,22 +2127,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1118340387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118340384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36e2c70b09d804a468b107a571e5f0af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mySlider: {fileID: 1118340386}
-  valueText: {fileID: 1649878246}
-  isWholeNumber: 1
-  maxValue: 300
 --- !u!1 &1285371546
 GameObject:
   m_ObjectHideFlags: 0
@@ -2332,7 +2248,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1387588205}
   - component: {fileID: 1387588206}
-  - component: {fileID: 1387588207}
   m_Layer: 5
   m_Name: SliderPSI
   m_TagString: Untagged
@@ -2413,22 +2328,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1387588207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387588204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36e2c70b09d804a468b107a571e5f0af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mySlider: {fileID: 1387588206}
-  valueText: {fileID: 412084074}
-  isWholeNumber: 1
-  maxValue: 3000
 --- !u!1 &1442222069
 GameObject:
   m_ObjectHideFlags: 0
@@ -3446,7 +3345,6 @@ GameObject:
   - component: {fileID: 1974742872}
   - component: {fileID: 1974742874}
   - component: {fileID: 1974742873}
-  - component: {fileID: 1974742875}
   m_Layer: 5
   m_Name: GaugeBackGround
   m_TagString: Untagged
@@ -3512,23 +3410,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1974742871}
   m_CullTransparentMesh: 1
---- !u!114 &1974742875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1974742871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5713232421093a148acbfcef8c803c0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxValue: 3000
-  stepSize: 100
-  needle: {fileID: 1492692768}
-  barFill: {fileID: 0}
-  controlSlider: {fileID: 1387588206}
 --- !u!1 &2026702346
 GameObject:
   m_ObjectHideFlags: 0
@@ -3717,7 +3598,6 @@ GameObject:
   - component: {fileID: 2124110213}
   - component: {fileID: 2124110215}
   - component: {fileID: 2124110214}
-  - component: {fileID: 2124110216}
   m_Layer: 5
   m_Name: GaugeBackGroundBar
   m_TagString: Untagged
@@ -3783,22 +3663,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124110212}
   m_CullTransparentMesh: 1
---- !u!114 &2124110216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2124110212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c73dbb7525b9ef74f99527a4725e80ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fillImage: {fileID: 0}
-  targetText: {fileID: 0}
-  targetValue: 0
-  maxValue: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
